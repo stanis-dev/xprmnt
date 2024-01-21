@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsNumber } from 'class-validator';
+import { IsByteLength, IsNumber, IsString } from 'class-validator';
 import { EnvVar } from '../utils/config';
 
 export default class AppConfig {
@@ -7,4 +7,9 @@ export default class AppConfig {
   @Type(() => Number)
   @IsNumber()
   public readonly port: number = 3000;
+
+  @EnvVar('CRYPTO_SECRET_KEY')
+  @IsString()
+  @IsByteLength(16)
+  public readonly cryptoSecretKey: string;
 }

@@ -3,6 +3,7 @@ import { ConfigModule, getConfigToken } from './utils/config';
 import AppConfig from './config/app.config';
 import MongoConfig from './config/mongo.config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { MonstersModule } from './monsters/monsters.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { MongooseModule } from '@nestjs/mongoose';
         uri: mongoConfig.mongoUri,
       }),
     }),
+    MonstersModule,
   ],
   controllers: [],
   providers: [],
