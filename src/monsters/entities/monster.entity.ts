@@ -19,23 +19,27 @@ export const MONSTER_TITLES = [
   'Dr.',
   'That weird thingy',
 ] as const;
+export type MonsterTitle = (typeof MONSTER_TITLES)[number];
 
 export type MonsterName = {
   first: string;
   last: string;
-  title: (typeof MONSTER_TITLES)[number];
+  title: MonsterTitle;
 };
 
+export type MonsterGender = (typeof MONSTER_GENDERS)[number];
+export type MonsterNationality = (typeof MONSTER_NATIONALITIES)[number];
+
 export type MonsterProperties = {
-  monsterName: MonsterName;
-  gender: (typeof MONSTER_GENDERS)[number];
+  name: MonsterName;
+  gender: MonsterGender;
   description?: string;
-  nationality: (typeof MONSTER_NATIONALITIES)[number][];
+  nationality: MonsterNationality[];
   image: string;
-  goldBalance: number;
-  speed: number;
-  health: number;
-  secretNotes: string;
+  goldBalance?: number;
+  speed?: number;
+  health?: number;
+  secretNotes?: string;
   monsterPassword: string;
 };
 
@@ -49,7 +53,7 @@ export type MonsterDocument = mongoose.Document &
   MonsterMethods;
 
 export const MonsterSchema = new Schema<MonsterDocument>({
-  monsterName: {
+  name: {
     first: {
       type: String,
       required: true,
@@ -66,6 +70,7 @@ export const MonsterSchema = new Schema<MonsterDocument>({
   },
   gender: {
     type: String,
+    required: true,
     enum: MONSTER_GENDERS,
   },
   description: String,
@@ -93,11 +98,11 @@ export const MonsterSchema = new Schema<MonsterDocument>({
   },
   speed: {
     type: Number,
-    default: 0,
+    default: 100,
   },
   health: {
     type: Number,
-    default: 0,
+    default: 100,
   },
   secretNotes: {
     type: String,
@@ -107,6 +112,7 @@ export const MonsterSchema = new Schema<MonsterDocument>({
     type: String,
     required: true,
     trim: true,
+    select: false,
     validate: {
       validator: (v: string) => {
         const { score } = zxcvbn(v);
@@ -165,7 +171,7 @@ const hashPassword = async (password: string) => {
 };
 
 MonsterSchema.pre('save', async function (next) {
-  if (this.isModified('secretNotes')) {
+  if (this.secretNotes && this.isModified('secretNotes')) {
     this.secretNotes = encryptSecretNotes(this.secretNotes);
   }
 
@@ -173,7 +179,7 @@ MonsterSchema.pre('save', async function (next) {
     this.monsterPassword = await hashPassword(this.monsterPassword);
   }
 
-  next();
+  return next();
 });
 
 MonsterSchema.methods.comparePassword = async function (

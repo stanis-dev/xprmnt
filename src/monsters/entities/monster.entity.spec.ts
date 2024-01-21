@@ -9,7 +9,7 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 
 const generateRandomMonster = (): MonsterProperties => ({
-  monsterName: {
+  name: {
     first: faker.person.firstName(),
     last: faker.person.lastName(),
     title: faker.helpers.arrayElement(MONSTER_TITLES),
@@ -44,13 +44,13 @@ describe('Monster', () => {
   it('should throw an error on validation fail', async () => {
     const monsterData1 = generateRandomMonster();
     // @ts-expect-error not assignable
-    monsterData1.monsterName.title = 'Sire';
+    monsterData1.name.title = 'Sire';
     const monster = new Monster(monsterData1);
     expect(monster).toBeDefined();
     await expect(monster.validate()).rejects.toThrow();
 
     const monsterData2 = generateRandomMonster();
-    monsterData2.monsterName.first = '';
+    monsterData2.name.first = '';
     const monster2 = new Monster(monsterData2);
     expect(monster2).toBeDefined();
     await expect(monster2.validate()).rejects.toThrow();

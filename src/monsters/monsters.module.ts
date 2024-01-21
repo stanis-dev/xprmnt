@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 import { MonstersService } from './monsters.service';
 import { MonstersController } from './monsters.controller';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -14,6 +14,6 @@ import Monster, { MonsterSchema } from './entities/monster.entity';
     ]),
   ],
   controllers: [MonstersController],
-  providers: [MonstersService],
+  providers: [MonstersService, Logger],
 })
 export class MonstersModule {}
