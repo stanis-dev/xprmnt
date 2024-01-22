@@ -7,6 +7,7 @@ import { MonstersModule } from './monsters/monsters.module';
 import { AuthModule, HeaderAuthGuard } from './auth';
 import { APP_GUARD } from '@nestjs/core';
 import { UsersModule } from './users/users.module';
+import { GoldModule } from './gold/gold.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { UsersModule } from './users/users.module';
 
     MonstersModule,
     UsersModule,
+    GoldModule,
   ],
   controllers: [],
   providers: [

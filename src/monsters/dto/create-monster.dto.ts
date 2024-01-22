@@ -16,7 +16,6 @@ import {
   MonsterGender,
   MonsterName,
   MonsterNationality,
-  MonsterProperties,
   MonsterTitle,
 } from '../entities/monster.entity';
 import { Type } from 'class-transformer';
@@ -32,7 +31,7 @@ class MonsterNameDto implements MonsterName {
   title: MonsterTitle;
 }
 
-export class CreateMonsterDto implements MonsterProperties {
+export class CreateMonsterDto {
   @ValidateNested()
   @Type(() => MonsterNameDto)
   name: MonsterName;

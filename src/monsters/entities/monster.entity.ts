@@ -36,11 +36,12 @@ export type MonsterProperties = {
   description?: string;
   nationality: MonsterNationality[];
   image: string;
-  goldBalance?: number;
+  goldBalance: number;
   speed?: number;
   health?: number;
   secretNotes?: string;
   monsterPassword: string;
+  isLocked: boolean;
 };
 
 export type MonsterMethods = {
@@ -95,6 +96,10 @@ export const MonsterSchema = new Schema<MonsterDocument>({
     type: Number,
     default: 0,
     min: [0, 'gold balance cannot be negative'],
+  },
+  isLocked: {
+    type: Boolean,
+    default: false,
   },
   speed: {
     type: Number,

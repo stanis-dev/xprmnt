@@ -15,5 +15,6 @@ import Monster, { MonsterSchema } from './entities/monster.entity';
   ],
   controllers: [MonstersController],
   providers: [MonstersService, Logger],
+  exports: [MonstersService],
 })
 export class MonstersModule {}
