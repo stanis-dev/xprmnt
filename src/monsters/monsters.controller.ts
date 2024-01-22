@@ -6,11 +6,17 @@ import {
   Patch,
   Param,
   Delete,
+  Req,
 } from '@nestjs/common';
 import { MonstersService } from './monsters.service';
 import { CreateMonsterDto } from './dto/create-monster.dto';
 import { UpdateMonsterDto } from './dto/update-monster.dto';
 import { Roles } from 'src/auth/roles.decorator';
+import { Public } from 'src/auth';
+import { User } from 'src/users/users.service';
+
+// Ideally augmentation would be done dinamically through a decorator
+type AugmentedRequest = Request & { user?: User };
 
 @Controller('monsters')
 export class MonstersController {
@@ -23,13 +29,14 @@ export class MonstersController {
   }
 
   @Get()
-  findAll() {
-    return this.monstersService.findAll();
+  @Public()
+  findAll(@Req() req: AugmentedRequest) {
+    return this.monstersService.findAll(req.user);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.monstersService.findOne(id);
+  findOne(@Param('id') id: string, @Req() req: AugmentedRequest) {
+    return this.monstersService.findOne(id, req.user);
   }
 
   @Patch(':id')
@@ -38,6 +45,7 @@ export class MonstersController {
   }
 
   @Delete(':id')
+  @Roles('bmike')
   remove(@Param('id') id: string) {
     return this.monstersService.remove(id);
   }

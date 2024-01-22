@@ -53,10 +53,6 @@ export class CreateMonsterDto implements MonsterProperties {
 
   @IsNumber()
   @IsInt()
-  goldBalance = 0;
-
-  @IsNumber()
-  @IsInt()
   speed = 100;
 
   @IsNumber()

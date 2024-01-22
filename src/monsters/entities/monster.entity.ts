@@ -45,7 +45,7 @@ export type MonsterProperties = {
 
 export type MonsterMethods = {
   comparePassword: (candidatePassword: string) => Promise<boolean>;
-  decryptSecretNotes: () => Promise<string>;
+  decryptSecretNotes: () => void;
 };
 
 export type MonsterDocument = mongoose.Document &
@@ -75,8 +75,8 @@ export const MonsterSchema = new Schema<MonsterDocument>({
   },
   description: String,
   nationality: {
-    type: [MONSTER_NATIONALITIES],
-    default: [MONSTER_NATIONALITIES[0]],
+    type: [String],
+    enum: MONSTER_NATIONALITIES,
   },
   image: {
     type: String,
@@ -106,6 +106,7 @@ export const MonsterSchema = new Schema<MonsterDocument>({
   },
   secretNotes: {
     type: String,
+    select: false,
     default: '',
   },
   monsterPassword: {
@@ -142,7 +143,7 @@ function encryptSecretNotes(secretNotes: string) {
   return encrypted + authTag;
 }
 
-MonsterSchema.methods.decryptSecretNotes = async function () {
+MonsterSchema.methods.decryptSecretNotes = function () {
   const authTagLength = 16 * 2; // 16 bytes in hex
   const encrypted = this.secretNotes.slice(0, -authTagLength);
   const authTag = this.secretNotes.slice(-authTagLength);
@@ -158,7 +159,7 @@ MonsterSchema.methods.decryptSecretNotes = async function () {
 
   let decrypted = decipher.update(encrypted, 'hex', 'utf8');
   decrypted += decipher.final('utf8');
-  return decrypted;
+  this.secretNotes = decrypted;
 };
 
 const hashPassword = async (password: string) => {

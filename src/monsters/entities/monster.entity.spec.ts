@@ -81,12 +81,13 @@ describe('Monster', () => {
 
   it('encrypts and decrypts secret notes correctly', async () => {
     const monsterData = generateRandomMonster();
+    const secretNotes = monsterData.secretNotes;
+
     const monster = new Monster(monsterData);
     await monster.save();
 
-    const secretNotes = monsterData.secretNotes;
-    const decryptedSecretNotes = await monster.decryptSecretNotes();
-    expect(decryptedSecretNotes).toEqual(secretNotes);
+    monster.decryptSecretNotes();
+    expect(monster.secretNotes).toEqual(secretNotes);
   });
 
   it('hashes and compares passwords correctly', async () => {

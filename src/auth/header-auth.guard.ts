@@ -19,6 +19,18 @@ export default class HeaderAuthGuard extends AuthGuard('header') {
   }
 
   canActivate(context: ExecutionContext) {
+    const request = context.switchToHttp().getRequest();
+    const username = request.headers.authorization as
+      | User['username']
+      | undefined;
+
+    if (username) {
+      // here we are all going to use some good'ol imagination
+      // and assume that the username is actually a JWT token and we verified it successfully
+      // getting user's data from the payload
+      request.user = this.usersService.findOne(username);
+    }
+
     const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
       context.getHandler(),
       context.getClass(),
@@ -28,22 +40,13 @@ export default class HeaderAuthGuard extends AuthGuard('header') {
       return true;
     }
 
-    const request = context.switchToHttp().getRequest();
-    const username = request.headers.authorization as
-      | User['username']
-      | undefined;
     if (!username) {
       throw new UnauthorizedException();
     }
 
-    // here we are all going to use some good'ol imagination
-    // and assume that the authHeader is a JWT token and we verified it successfully
-    // getting user's data from the payload
-    const user = this.usersService.findOne(username);
-    if (!user) {
+    if (!request.user) {
       throw new UnauthorizedException();
     }
-    request.user = user;
 
     const requiredRoles = this.reflector.getAllAndOverride<string[]>(
       ROLES_KEY,
