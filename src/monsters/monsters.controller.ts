@@ -10,12 +10,14 @@ import {
 import { MonstersService } from './monsters.service';
 import { CreateMonsterDto } from './dto/create-monster.dto';
 import { UpdateMonsterDto } from './dto/update-monster.dto';
+import { Roles } from 'src/auth/roles.decorator';
 
 @Controller('monsters')
 export class MonstersController {
   constructor(private readonly monstersService: MonstersService) {}
 
   @Post()
+  @Roles('bmike')
   create(@Body() createMonsterDto: CreateMonsterDto) {
     return this.monstersService.create(createMonsterDto);
   }

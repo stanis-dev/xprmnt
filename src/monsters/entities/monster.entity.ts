@@ -8,7 +8,7 @@ const ENCRYPTION_ALG: crypto.CipherCCMTypes = 'aes-256-ccm';
 const IV: crypto.BinaryLike = crypto.randomBytes(12);
 
 //TODO: move to config
-const ENCRYPTION_SERCRET_KEY = process.env.CRYPTO_SECRET_KEY!;
+const ENCRYPTION_SECRET_KEY = process.env.CRYPTO_SECRET_KEY!;
 
 export const MONSTER_GENDERS = ['female', 'male', 'other'] as const;
 export const MONSTER_NATIONALITIES = ['Other', 'US', 'UK', 'SP', 'DE'] as const;
@@ -129,7 +129,7 @@ export const MonsterSchema = new Schema<MonsterDocument>({
 function encryptSecretNotes(secretNotes: string) {
   const cipher = crypto.createCipheriv(
     ENCRYPTION_ALG,
-    ENCRYPTION_SERCRET_KEY,
+    ENCRYPTION_SECRET_KEY,
     IV,
     { authTagLength: 16 },
   );
@@ -149,7 +149,7 @@ MonsterSchema.methods.decryptSecretNotes = async function () {
 
   const decipher = crypto.createDecipheriv(
     ENCRYPTION_ALG,
-    ENCRYPTION_SERCRET_KEY,
+    ENCRYPTION_SECRET_KEY,
     IV,
     { authTagLength: 16 },
   );

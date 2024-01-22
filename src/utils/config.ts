@@ -1,6 +1,7 @@
 import {
   DynamicModule,
   Global,
+  Inject,
   Module,
   Provider,
   Type,
@@ -51,6 +52,16 @@ export const EnvVar = (name: string) =>
 
 function createProviders(): Provider<Config>[] {
   return [...configs.values()].map(createConfigProvider);
+}
+
+/**
+ * Injects a config object into a sertive. The provider is implicitly created by the ConfigModule.
+ * @param config
+ * @constructor
+ */
+export function InjectConfig(config: Type<Config>) {
+  configs.add(config);
+  return Inject(getConfigToken(config));
 }
 
 @Global()

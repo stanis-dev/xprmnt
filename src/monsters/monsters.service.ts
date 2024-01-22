@@ -22,18 +22,17 @@ export class MonstersService {
 
   async create(createMonsterDto: CreateMonsterDto) {
     this.logger.log('Creating a monster...');
-    this.logger.log('MonstersService constructor: --------' + Monster.name);
     try {
       const monster = new this.monsterModel(createMonsterDto);
       await monster.save();
 
       return { message: 'Monster created successfully' };
     } catch (error) {
-      this.logger.error(error.message, error.stack);
-
-      if (error.name === 'ValidationError') {
-        throw new BadRequestException(error.message);
-      }
+      this.logger.error(
+        'Error creating a monster: ',
+        error.message,
+        error.stack,
+      );
 
       return new BadRequestException(error.message);
     }
@@ -41,7 +40,7 @@ export class MonstersService {
 
   async findAll() {
     try {
-      return await Monster.find();
+      return await this.monsterModel.find();
     } catch (error) {
       throw new NotFoundException(error.message);
     }
@@ -49,7 +48,7 @@ export class MonstersService {
 
   async findOne(id: string) {
     try {
-      return await Monster.findById(id);
+      return await this.monsterModel.findById(id);
     } catch (error) {
       throw new NotFoundException(error.message);
     }
@@ -57,7 +56,7 @@ export class MonstersService {
 
   async update(id: string, updateMonsterDto: UpdateMonsterDto) {
     try {
-      return await Monster.findByIdAndUpdate(id, updateMonsterDto, {
+      return await this.monsterModel.findByIdAndUpdate(id, updateMonsterDto, {
         new: true,
       });
     } catch (error) {
@@ -72,7 +71,7 @@ export class MonstersService {
 
   async remove(id: string) {
     try {
-      return await Monster.findByIdAndDelete(id);
+      return await this.monsterModel.findByIdAndDelete(id);
     } catch (error) {
       throw new NotFoundException(error.message);
     }
