@@ -51,6 +51,9 @@ export class GoldService {
 
         return;
       }
+
+      monster.goldBalance += amount;
+      await monster.save();
     } catch (error) {
       throw error;
     }
