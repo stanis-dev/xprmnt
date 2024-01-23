@@ -14,6 +14,7 @@ Two headers are relevant for all endpoints:
 - [ ❌ ]: Redis config
 
 - [ ✅ ]: Monster Mongoose Schema
+- [ ✅ ]: Monster Entity Test Suite
 
 - [ ✅ ]: Monster CRUD:
 
