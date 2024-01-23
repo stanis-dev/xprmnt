@@ -18,6 +18,7 @@ const generateRandomMonster = (): MonsterProperties => ({
   description: faker.lorem.paragraph(),
   nationality: faker.helpers.arrayElements(MONSTER_NATIONALITIES, 2),
   image: faker.image.url(),
+  isLocked: false,
   goldBalance: faker.number.int(),
   speed: faker.number.float(),
   health: faker.number.float(),
