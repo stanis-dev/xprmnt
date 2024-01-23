@@ -19,7 +19,6 @@ import { GoldModule } from './gold/gold.module';
         uri: mongoConfig.mongoUri,
       }),
     }),
-
     MonstersModule,
     UsersModule,
     GoldModule,

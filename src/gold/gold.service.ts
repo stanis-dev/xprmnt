@@ -29,7 +29,7 @@ export class GoldService {
       }
 
       if (monster.isLocked) {
-        // poor man's retry logic, rxjs would be more robust, but time is limited
+        // poor man's lock & retry logic, rxjs would be more robust, but time is limited
         // would also be nice to have a lock release mechanism to avoid stale locks 🤷‍♂️
         if (tries >= MAX_GOLD_UPDATE_RETRIES) {
           this.logger.error(
@@ -71,7 +71,7 @@ export class GoldService {
       }
 
       if (monster.isLocked) {
-        // poor man's retry logic, rxjs would be more robust, but time is limited
+        // poor man's lock & retry logic, rxjs would be more robust, but time is limited
         // would also be nice to have a lock release mechanism to avoid stale locks 🤷‍♂️
         if (tries >= MAX_GOLD_UPDATE_RETRIES) {
           this.logger.error(

@@ -1,7 +1,7 @@
 import { Transform } from 'class-transformer';
 import { IsInt, IsNumber, IsPositive, Max, Min } from 'class-validator';
 
-export class PutGoldDto {
+export class PutGoldQueryDto {
   @Transform(({ value }) => parseInt(value))
   @IsNumber()
   @IsInt()

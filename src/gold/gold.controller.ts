@@ -1,7 +1,7 @@
 import { Controller, Logger, Param, Put, Query } from '@nestjs/common';
 import { GoldService } from './gold.service';
 import { Roles } from 'src/auth/roles.decorator';
-import { PutGoldDto } from './dto/put.gold';
+import { PutGoldQueryDto } from './dto/put.gold';
 
 @Controller('monsters/:monsterId/gold')
 export class GoldController {
@@ -13,7 +13,7 @@ export class GoldController {
   @Roles('elixir-ceo')
   async deposit(
     @Param('monsterId') monsterId: string,
-    @Query() params: PutGoldDto,
+    @Query() params: PutGoldQueryDto,
   ) {
     return this.goldService.depositGold(monsterId, params.amount);
   }
@@ -22,7 +22,7 @@ export class GoldController {
   @Roles('bmike')
   async withdraw(
     @Param('monsterId') monsterId: string,
-    @Query() params: PutGoldDto,
+    @Query() params: PutGoldQueryDto,
   ) {
     return this.goldService.withdrawGold(monsterId, params.amount);
   }
