@@ -35,12 +35,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/monsters",
-							"protocol": "http",
+							"raw": "https://elixir-xprmnt.onrender.com/monsters",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"elixir-xprmnt",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"monsters"
 							]
@@ -74,15 +75,16 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/monsters/65ae9d5ea8edf2c9d5e84d52",
-							"protocol": "http",
+							"raw": "https://elixir-xprmnt.onrender.com/monsters/65aec1027f068b461ef25587",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"elixir-xprmnt",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"monsters",
-								"65ae9d5ea8edf2c9d5e84d52"
+								"65aec1027f068b461ef25587"
 							]
 						}
 					},
@@ -117,12 +119,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/monsters",
-							"protocol": "http",
+							"raw": "https://elixir-xprmnt.onrender.com/monsters",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"elixir-xprmnt",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"monsters"
 							]
@@ -156,15 +159,16 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/monsters/65aebfc3ecf527b131f76e81",
-							"protocol": "http",
+							"raw": "https://elixir-xprmnt.onrender.com/monsters/65aec1027f068b461ef25587",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"elixir-xprmnt",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"monsters",
-								"65aebfc3ecf527b131f76e81"
+								"65aec1027f068b461ef25587"
 							]
 						}
 					},
@@ -192,12 +196,13 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/monsters/65aec1027f068b461ef25587/gold/deposit?amount=500",
-							"protocol": "http",
+							"raw": "https://elixir-xprmnt.onrender.com/monsters/65aec1027f068b461ef25587/gold/deposit?amount=500",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"elixir-xprmnt",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"monsters",
 								"65aec1027f068b461ef25587",
@@ -231,12 +236,13 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/monsters/65aec1027f068b461ef25587/gold/withdraw?amount=30000",
-							"protocol": "http",
+							"raw": "https://elixir-xprmnt.onrender.com/monsters/65aec1027f068b461ef25587/gold/withdraw?amount=3",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"elixir-xprmnt",
+								"onrender",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"monsters",
 								"65aec1027f068b461ef25587",
@@ -246,7 +252,7 @@
 							"query": [
 								{
 									"key": "amount",
-									"value": "30000"
+									"value": "3"
 								}
 							]
 						}

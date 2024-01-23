@@ -25,10 +25,6 @@ export function RateLimitMiddleware(authConfig: AuthConfig) {
     limit: (req) => {
       const apiKey = req.headers[authConfig.apiHeaderName];
       if (!apiKey || typeof apiKey !== 'string') {
-        console.log(
-          'unathenticatedRateLimit',
-          authConfig.unathenticatedRateLimit,
-        );
         return authConfig.unathenticatedRateLimit;
       }
 
