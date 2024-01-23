@@ -1,0 +1,259 @@
+{
+	"info": {
+		"_postman_id": "e681a994-1e47-4afb-b1c7-e6c6d50225cd",
+		"name": "Elixir",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29195694"
+	},
+	"item": [
+		{
+			"name": "Monsters",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-elixir-api-key",
+								"value": "foo",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bored-mike",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": {\n        \"first\": \"Paco\",\n        \"last\": \"de Lucia\",\n        \"title\": \"Mr.\"\n    },\n    \"gender\": \"male\",\n    \"description\": \"lorem something siomething\",\n    \"nationality\": [\"SP\"],\n    \"image\": \"https://source.unsplash.com/random?monster,cute\",\n    \"speed\": 120,\n    \"health\": 100,\n    \"secretNotes\": \"some more of that lorem something something, but secret\",\n    \"monsterPassword\": \"123234awsdASD·$%&\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/monsters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"monsters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-elixir-api-key",
+								"value": "foo",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bored-mike",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": {\n        \"first\": \"Paco1\",\n        \"last\": \"de Lucia\",\n        \"title\": \"Mr.\"\n    },\n    \"goldBalance\": 500\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/monsters/65ae9d5ea8edf2c9d5e84d52",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"monsters",
+								"65ae9d5ea8edf2c9d5e84d52"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-elixir-api-key",
+								"value": "foo",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bored-mike",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": {\n        \"first\": \"Paco\",\n        \"last\": \"de Lucia\",\n        \"title\": \"Mr.\"\n    },\n    \"gender\": \"male\",\n    \"description\": \"lorem something siomething\",\n    \"nationality\": [\"SP\"],\n    \"image\": \"https://source.unsplash.com/random?monster,cute\",\n    \"goldBalance\": 0,\n    \"speed\": 120,\n    \"health\": 100,\n    \"secretNotes\": \"some more of that lorem something something\",\n    \"monsterPassword\": \"123234awsdASD·$%&\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/monsters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"monsters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-elixir-api-key",
+								"value": "foo",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bored-mike",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": {\n        \"first\": \"Paco\",\n        \"last\": \"de Lucia\",\n        \"title\": \"Mr.\"\n    },\n    \"gender\": \"male\",\n    \"description\": \"lorem something siomething\",\n    \"nationality\": [\"SP\"],\n    \"image\": \"https://source.unsplash.com/random?monster,cute\",\n    \"goldBalance\": 0,\n    \"speed\": 120,\n    \"health\": 100,\n    \"secretNotes\": \"some more of that lorem something something\",\n    \"monsterPassword\": \"123234awsdASD·$%&\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/monsters/65aebfc3ecf527b131f76e81",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"monsters",
+								"65aebfc3ecf527b131f76e81"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gold",
+			"item": [
+				{
+					"name": "Deposit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-elixir-api-key",
+								"value": "foo",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "elixir-ceo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/monsters/65aec1027f068b461ef25587/gold/deposit?amount=500",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"monsters",
+								"65aec1027f068b461ef25587",
+								"gold",
+								"deposit"
+							],
+							"query": [
+								{
+									"key": "amount",
+									"value": "500"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Withdraw",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-elixir-api-key",
+								"value": "foo",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bored-mike",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/monsters/65aec1027f068b461ef25587/gold/withdraw?amount=30000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"monsters",
+								"65aec1027f068b461ef25587",
+								"gold",
+								"withdraw"
+							],
+							"query": [
+								{
+									"key": "amount",
+									"value": "30000"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
