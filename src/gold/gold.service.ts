@@ -54,6 +54,8 @@ export class GoldService {
 
       monster.goldBalance += amount;
       await monster.save();
+
+      return 'gold has been deposited successfully';
     } catch (error) {
       throw error;
     }
@@ -100,11 +102,11 @@ export class GoldService {
 
       monster.goldBalance -= amount;
       await monster.save();
+
+      return 'gold has been withdrawn';
     } catch (error) {
       // hopefully it's a handled error that bubbles up here
       throw error;
     }
-
-    return 'gold has been withdrawn';
   }
 }
