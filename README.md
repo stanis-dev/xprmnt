@@ -1,44 +1,33 @@
 # Elixir Exercise
 
+## Endpoints are documented in Postman
+
+Two headers are relevant for all endpoints:
+
+- `x-elixir-api-key` - the api key for the user. can be either 'foo' or 'bar'. Monsters Get is public
+- `Authorization` - where the JWT would normally go. For this exercise, it's just a stub with two values representing the two roles: 'elixir-ceo' and 'bmike'
+
 ## Requirements
 
-Note: "%" indicates an optional requirement
+- [ ✅ ]: MongoDB config
+- [ ✅ ]: Auth config
+- [ ❌ ]: Redis config
 
-#### App Config:
+- [ ✅ ]: Monster Mongoose Schema
 
-- [ x ]: MongoDB config
-- [ ]: Auth Guard config
-- [ ]: % Redis config
+- [ ✅ ]: Monster CRUD:
 
-#### Persistence:
+  - ✅: Create 'only BMike'
+  - ✅: Read 'only BMike can see secret notes'
+  - ✅: Update 'only BMike'
+  - ✅: Delete 'only BMike'
 
-- [ - ]: Monster Mongoose Schema
-- [ ]: User Mongoose Schema
-  - Two possible roles: BMike, CEO
+- [ ✅ ]: Gold PUT
 
-#### Controllers:
+  - [ ✅ ]: Add gold to monster 'only CEO'
+  - [ ✅ ]: Removal only by BMike
 
-- [ ]: Monster CRUD
-  - GET
-    - public
-    - % Pagination
-  - POST
-    - private
-- [ ]: Gold PUT
-  - Addition only by CEO
-  - Removal only by BMike
-
-#### Nice to haves (not implemented):
-
-- Proper error handling: custom errors, error middleware
-- Custom logger, especially for tools like Sentry
-
-#### Smoke test cases:
-
-- [ ]: Create a monster (only BMike)
-- [ ]: Get a monster
-  - [ ]: Public user can't see private notes
-  - [ ]: Private user can see private notes correctly decrypted
-  - [ ]: Monster password is never returned
-- [ ]: Update a monster
-- [ ]: Delete a monster
+- [ ✅ ]: Authorization stub
+  - [ ✅ ]: rate limiting based on IP & api key
+  - [ ✅ ]: role based access control
+  - [ ✅ ]: Reset Password

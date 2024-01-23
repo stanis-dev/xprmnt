@@ -9,7 +9,7 @@ export default class HeaderAuthStrategy extends PassportStrategy(Strategy) {
   constructor(
     @InjectConfig(AuthConfig) private readonly authConfig: AuthConfig,
   ) {
-    super({ header: 'x-elixir-api-key' });
+    super({ header: authConfig.apiHeaderName });
   }
 
   validate(token: string) {
